@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MiniPay - Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="User.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Transactions</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Welcome to MiniPay</h1>
+
+      <!-- User Dashboard -->
+      <section id="dashboard">
+        <h2>Dashboard</h2>
+        <p>
+          Welcome to your MiniPay dashboard. You can manage your transactions
+          and settings here.
+        </p>
+      </section>
+
+      <!-- Transaction History -->
+      <section id="transactions">
+        <h2>Transaction History</h2>
+        <ul>
+          <li>
+            <strong>Date:</strong> September 9, 2023
+            <br />
+            <strong>Amount:</strong> $50.00
+          </li>
+          <!-- Add more transaction entries here -->
+        </ul>
+      </section>
+
+      <!-- Account Settings -->
+      <section id="settings">
+        <h2>Account Settings</h2>
+        <form>
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" name="fullname" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+
+          <button type="submit">Save Changes</button>
+        </form>
+      </section>
+    </div>
+  </body>
+</html>

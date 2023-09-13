@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MiniPay - Simplifying Your Payments</title>
+    <link rel="stylesheet" href="styles2.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="container">
+          <a class="logo">Welcome To MiniPay</a>
+          <ul class="navbar">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+            <li><a href="Login.html" class="btn-signin">Sign In</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Welcome to MiniPay</h1>
+          <p>
+            Are you tired of dealing with complicated payment processes? Look no
+            further! MiniPay is here to simplify your payments, whether you're
+            managing personal expenses or running a business. With our
+            user-friendly interface and secure technology, you can now send and
+            receive payments with ease.
+          </p>
+          <a href="signup.html" class="btn-signup">Sign Up Now</a>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="container">
+          <h2>Why Choose MiniPay</h2>
+          <ul>
+            <li>Fast and Secure Transactions</li>
+            <li>User-Friendly Interface</li>
+            <li>Global Accessibility</li>
+            <li>Real-Time Updates</li>
+            <li>24/7 Customer Support</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="signup-section" style="display: none">
+        <div class="container">
+          <h2>Sign Up</h2>
+          <form id="signupForm">
+            <input type="text" placeholder="Username" required />
+            <input type="email" placeholder="Email" required />
+            <input type="password" placeholder="Password" required />
+            <button type="submit">Sign Up</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Sign In Section -->
+      <section class="signin-section" style="display: none">
+        <div class="container">
+          <h2>Sign In</h2>
+          <form id="loginForm" class="justify-center">
+            <input type="text" placeholder="Username" required />
+            <input type="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+            <br />
+            <div>
+              Click here for
+              <a
+                href="signup.html"
+                class="w-full flex-none text-sm font-medium text-slate-500 mt-2"
+                style="color: #8cffdb"
+                >Signup</a
+              >
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2023 MiniPay. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+        <div class="social-media">
+          <a href="#" class="social-icon"
+            ><img
+              src="data:image/png;base64,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"
+              alt="Facebook"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="data:image/png;base64,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"
+              alt="Twitter"
+          /></a>
+          <a href="#" class="social-icon"
+            ><img
+              src="data:image/png;base64,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"
+              alt="LinkedIn"
+          /></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
