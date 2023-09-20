@@ -1,0 +1,112 @@
+.menu-button {
+    display: flex;
+    align-items: center;
+    background-color: rgba(84, 3, 108, 0.973);
+    color: #d260e9;
+    overflow: hidden;
+}
+
+#toggle-menu {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; 
+    background-color:rgba(84, 3, 108, 0.973);
+    color: #fff; 
+}
+
+.menu-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-items li {
+    margin: 10px 0;
+}
+
+.menu-items a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    display: block;
+    padding: 10px; 
+}
+
+.menu-open {
+    width: 200px; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #7b0ec3;
+    padding: 10px 20px;
+    color: #fff;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+.user-icon img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.slider {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+}
+
+.slide img {
+    width: 50%;
+    height: auto;
+}
+
+/* Add animation for sliding */
+@keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Set animation duration and make the slider loop */
+.slider .slide {
+    animation: slide 20s linear infinite;
+}
+
+/* Display the first slide initially */
+.slider .slide:first-child {
+    display: block;
+}
