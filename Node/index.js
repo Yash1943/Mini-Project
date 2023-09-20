@@ -1,10 +1,5 @@
-const express = require('express');
-const app = express();
-
-app.get('/', function (request, response) {
-    response.send('Hello World')
-})
-
-app.listen(3000, () => {
-    console.log("The server is started at 3000 port")
-}) 
+const app = require("./paymentSystem");
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log(`server listening at port - ${port}`);
+});
