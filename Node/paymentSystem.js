@@ -36,8 +36,6 @@ app.use(cookiepasrser("this is Secret String"));
 app.use(csrf("this_should_be_32_character_long", ["POST", "PUT", "DELETE"]));
 
 app.use(flash());
-app.use(passport.initialize());
-
 app.use(
     session({
         secret: "This_is_Super_Secret_Key_2021095900023267",
@@ -48,6 +46,9 @@ app.use(
 );
 
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.use(
     "local",
     new LocalStrategy(
@@ -56,13 +57,15 @@ passport.use(
             passwordField: "password",
         },
         (username, password, done) => {
+            console.log(username);
             parent.findOne({
                 where: {
                     email: username,
                 },
             })
+            console.log(username)
                 .then(async function (user) {
-                    console.log(user.email);
+                    console.log(user);
                     if (user) {
                         const resultantPass = await bcrypt.compare(password, user.password);
                         if (resultantPass) {
@@ -107,7 +110,7 @@ app.use(function (request, response, next) {
 app.get("/", (request, response) => {
     try {
         console.log("\nRoute:/FrontPage\n");
-        response.status(200).render("frontPage", { csrfToken: request.csrfToken() });
+        response.render("frontPage", { csrfToken: request.csrfToken() });
     } catch (error) {
         console.log("Error:" + error);
         request.flash("error", `Error:${error}`);
@@ -139,15 +142,17 @@ app.get("/login", (request, response) => {
 
 
 app.get(
-    "/Home",
-    connectEnsure.ensureLoggedIn({ redirectTo: "/" }),
+    "/home",
+    connectEnsure.ensureLoggedIn(),
     (request, response) => {
+        console.log("User : ", request.user);
         try {
-            console.log("\nRoute:/Home\n");
+            console.log("\nRoute:/home\n");
             if (request.user.UserRole == "parent") {
                 console.log(request.user.id);
                 if (request.accepts("html")) {
-                    response.render("Home", {
+                    console.log("Hello");
+                    response.render("home", {
                         csrfToken: request.csrfToken(),
                         User: request.user.username,
                     });
@@ -169,6 +174,26 @@ app.get(
     }
 );
 
+app.get(
+    "/Signout",
+    connectEnsure.ensureLoggedIn({ redirectTo: "/" }),
+    (request, response) => {
+        try {
+            request.logout((err) => {
+                if (err) {
+                    return next(err);
+                }
+                request.flash("success", "Signout Successfully");
+                response.redirect("/");
+            });
+        } catch (error) {
+            console.log("Error:" + error);
+            response.status(402).send(error);
+        }
+    }
+);
+
+
 app.post("/SignUpUser", async (request, response) => {
     console.log(request.body);
     try {
@@ -183,13 +208,16 @@ app.post("/SignUpUser", async (request, response) => {
                 password: hashPass,
                 UserRole: "parent",
             });
-            request.login(add, (err) => {
+
+            console.log(add);
+
+            request.logIn(add, (err) => {
                 if (err) {
                     console.log(err);
                 }
                 request.flash("success", "Admin Suceessfully Created");
                 console.log("The User is created");
-                response.redirect("/Home");
+                return response.redirect("/home");
             });
         } else {
             request.flash("error", "Email Already Exist");
@@ -205,15 +233,18 @@ app.post("/SignUpUser", async (request, response) => {
 
 app.post(
     "/parentLogin",
-    passport.authenticate("local", { failureRedirect: "/", failureFlash: true }),
+    passport.authenticate("local"),
     async (request, response) => {
+        console.log(request.body);
         try {
+
             console.log("\nPOST Route:/parentLogin\n");
             if (request.user.UserRole == "parent") {
+                console.log(user)
                 console.log("ParentLogin");
             }
             request.flash("success", "Login Successfully");
-            response.redirect("/Home");
+            return response.redirect("/home");
         } catch (error) {
             console.log("Error:" + error);
             request.flash("error", `Error:${error}`);
